@@ -1,0 +1,132 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Spectrum.Views.ItemDetailPage"
+             Title="{Binding Title}"
+               xmlns:local="clr-namespace:Spectrum.ViewModels"  
+             xmlns:model="clr-namespace:Spectrum.Models" x:DataType="local:ItemDetailViewModel">
+
+    <StackLayout Spacing="20" Padding="15" Orientation="Vertical">
+        <Label Text="{Binding Text}" FontSize="Medium"/>
+
+        <Image WidthRequest="80"
+                               
+                               Aspect="AspectFit"
+                               Source="{Binding Image}"
+                               />
+
+
+        <Label Text="{Binding Description}" FontSize="Small"/>
+
+            <Label Text="Variants and how to prepare" FontSize="Medium"/>
+
+
+        
+            <CollectionView x:Name="ItemsListView"
+                ItemsSource="{Binding Drinks}"
+                SelectionMode="None">
+                
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+
+                    <StackLayout Padding="10" x:DataType="model:Drink_Item" Orientation="Vertical">
+
+                        <StackLayout Orientation="Horizontal">
+
+                            <Image WidthRequest="80"
+                                   Aspect="AspectFit"
+                                  Source="{Binding strDrinkThumb}"
+                               />
+
+
+                            <StackLayout Orientation="Vertical">
+
+                                <Label Text="{Binding strDrink}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+                                <Label Text="{Binding strCategory}" 
+                            LineBreakMode="WordWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="12" />
+                                <Label Text="{Binding strAlcoholic}" 
+                            LineBreakMode="WordWrap"
+                            Style="{DynamicResource ListItemDetailTextStyle}"
+                            FontSize="12" />
+
+
+                            </StackLayout>
+                        </StackLayout>
+                        <Label Text="Preparation" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+
+                        <Label Text="{Binding strInstructions}" 
+                            LineBreakMode="WordWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="14" />
+                        <Label Text="Ingredients" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="16" />
+
+
+                        <StackLayout Orientation="Horizontal" HeightRequest="100">
+
+                        <CollectionView x:Name="ItemsListView2"
+                                ItemsSource="{Binding Ingredients}"
+                                    SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout  x:DataType="model:Ingredient" Orientation="Vertical">
+                                        <Label Text="{Binding strIngredient}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="12" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+
+                            <CollectionView x:Name="ItemsListView3"
+                                ItemsSource="{Binding Mesures}"
+                                    SelectionMode="None">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout  x:DataType="model:Mesure" Orientation="Vertical">
+                                            <Label Text="{Binding strMesure}" 
+                            LineBreakMode="NoWrap" 
+                            Style="{DynamicResource ListItemTextStyle}" 
+                            FontSize="12" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+
+
+                        </StackLayout>
+
+
+
+                        <StackLayout HeightRequest="2" BackgroundColor="Black"/>
+                    </StackLayout>
+                        
+                        
+                        
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        
+
+
+
+
+
+
+    </StackLayout>
+
+</ContentPage>
